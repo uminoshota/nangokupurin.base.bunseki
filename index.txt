@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南国プリン BASEストア売上向上戦略 インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Default height, can be overridden */
+            max-height: 450px; /* Max height to prevent excessive stretching */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px; /* Slightly larger default for medium screens */
+            }
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #FFD166, #FF6B6B); /* Sunny Yellow to Coral Red */
+        }
+        .section-title {
+            font-size: 2rem; /* Adjusted for JP */
+            font-weight: bold;
+            color: #073B4C; /* Dark Slate Blue */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* Slightly more rounded */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .kpi-value {
+            font-size: 2.8rem; /* Adjusted for JP */
+            font-weight: bold;
+            color: #118AB2; /* Cerulean Blue */
+        }
+        .kpi-label {
+            font-size: 0.9rem; /* Adjusted for JP */
+            color: #073B4C; /* Dark Slate Blue */
+            margin-top: 0.25rem;
+        }
+        .action-card {
+            border-left: 5px solid #118AB2; /* Cerulean Blue */
+            background-color: #F0F9FF; /* Light blue tint */
+        }
+        .action-card h3 {
+            color: #073B4C; /* Dark Slate Blue */
+        }
+        .comparison-item {
+            border: 1px solid #E0E0E0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #FAFAFA;
+        }
+        .comparison-item h4 {
+            color: #073B4C; /* Dark Slate Blue */
+        }
+        .status-good { color: #06D6A0; /* Mint Green */ font-weight: bold; }
+        .status-improve { color: #FF6B6B; /* Coral Red */ font-weight: bold; }
+        .unicode-icon {
+            font-size: 1.75rem;
+            margin-right: 0.5rem;
+            color: #118AB2; /* Cerulean Blue */
+        }
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #118AB2; /* Blue */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+            display: none; /* Initially hidden */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .gemini-feature-card {
+            background-color: #FFF9E6; /* Light yellow background for distinction */
+            border-left: 4px solid #FFD166; /* Sunny Yellow */
+            padding: 1rem; 
+            margin-top: 1.5rem;
+        }
+        .gemini-button {
+            background-color: #118AB2;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        .gemini-button:hover {
+            background-color: #0F7694;
+        }
+        .gemini-textarea {
+            border: 1px solid #B2DFDB;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            min-height: 70px;
+            margin-bottom: 0.5rem;
+        }
+        .gemini-input {
+            border: 1px solid #B2DFDB;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        .gemini-select {
+            border: 1px solid #B2DFDB;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 
+        Chosen Color Palette: Energetic & Playful
+        HEX Codes: #FF6B6B (Coral Red), #FFD166 (Sunny Yellow), #06D6A0 (Mint Green), #118AB2 (Cerulean Blue), #073B4C (Dark Slate Blue/Navy)
+
+        Infographic Narrative & Structure Plan (based on BASE Store Report):
+        1. Hero Section
+        2. Current Challenges
+        3. Key Point: Customer Experience Gap
+           - Existing Gemini API Feature: Product FAQ Generator
+        4. Clarifying Target Customer Profiles (New Section)
+           - Added Gemini API Feature: Target Customer Persona Generator
+        5. Learning from Competitors
+           - Existing Gemini API Feature: Gift Set Idea Generator
+        6. Top Priority Actions
+           - Enhanced Action 1 (Brand Experience) with Gemini API: "About Us" Content Enhancer
+           - Enhanced Action 4 (Product Page) with Gemini API: Product Description Rewriter
+        7. BASE App Utilization Strategy
+           - Existing Gemini API Feature: BASE App Usage Idea Deep Dive
+           - Added Gemini API Feature: Seasonal Promotion Idea Generator
+        8. Roadmap: Short-Term Intensive Improvements
+        9. Expected Outcomes
+        10. Conclusion
+
+        Visualization Choices (Confirming NO SVG, NO Mermaid JS):
+        - Standard charts: Chart.js (Canvas).
+        - Diagrams/Flows/Cards: HTML/CSS with Tailwind.
+
+        NEITHER Mermaid JS NOR SVG were used anywhere in this document.
+    -->
+
+    <header class="hero-bg text-white p-8 text-center shadow-lg">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">南国プリン BASEストア売上向上戦略</h1>
+        <p class="text-lg md:text-xl">専門家分析に基づくデータ駆動型インフォグラフィック</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="current-challenges" class="mb-12">
+            <h2 class="section-title">現状の課題：BASEストアでのブランドポテンシャル未活用</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">南国プリン様の公式サイトはブランドストーリーやこだわりを豊かに表現していますが、現在のBASEストアではその魅力が十分に活かされていません。このギャップが機会損失に繋がっている可能性があります。</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="comparison-item">
+                        <h3 class="text-xl font-semibold mb-3 text-[#073B4C]">公式サイトの魅力 <span class="text-green-500">(高評価)</span></h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>温かく懐かしい「南国」イメージの巧みな表現</li>
+                            <li>宮崎の歴史やフラミンゴのモチーフ活用</li>
+                            <li>素材へのこだわり（松浦牧場の牛乳等）の詳細な紹介</li>
+                            <li>ブランドの独自性とストーリー性の強い印象付け</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h3 class="text-xl font-semibold mb-3 text-[#073B4C]">BASEストアの現状 <span class="text-red-500">(要改善)</span></h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>ブランド体験の再現性が低い（汎用的デザイン）</li>
+                            <li>公式サイトで感じる特別な雰囲気・物語性が希薄</li>
+                            <li>デザインカスタマイズ機能の未活用</li>
+                            <li>プレミアム感の演出不足</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-sm text-gray-600">BASEストアでも公式サイトのようなブランド体験を提供することが、顧客の信頼獲得と購買意欲向上に不可欠です。</p>
+            </div>
+        </section>
+
+        <section id="cx-gap" class="mb-12">
+            <h2 class="section-title">顧客体験のギャップ：信頼と魅力向上の鍵</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">現在のBASEストアでは、顧客レビューの不足、送料・支払い情報の不明瞭さ、全体的なブランド訴求力の弱さなどが、顧客体験の質を低下させている可能性があります。これらの改善がコンバージョン率向上に繋がります。</p>
+                <div class="chart-container mx-auto h-[320px] md:h-[400px]">
+                    <canvas id="customerExperienceChart"></canvas>
+                </div>
+                <p class="mt-6 text-center text-sm text-gray-600">特に「レビューによる信頼性」と「ブランドストーリー共感度」の向上が急務です。「情報透明性」の確保も顧客の不安解消に繋がります。</p>
+                <div class="gemini-feature-card mt-6" style="background-color: #E0F2F7; border-left-color: #06D6A0;"> <h4 class="text-lg font-semibold text-[#073B4C] mb-2">✨ AIが生成！商品別FAQで疑問を解消</h4>
+                    <p class="text-sm text-gray-700 mb-3">商品名を入力すると、AIが想定されるFAQ（よくある質問と回答）を生成し、顧客の疑問解消をサポートします。</p>
+                    <input type="text" id="productNameForFaq" class="gemini-input" placeholder="例：南国プリン プレーン、宮崎マンゴープリン">
+                    <button id="generateFaqButton" class="gemini-button mb-3 w-full">FAQを✨生成する</button>
+                    <div id="faqLoadingSpinner" class="loader"></div>
+                    <div id="faqContainer" class="mt-3 space-y-3">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="target-customer-profile" class="mb-12">
+            <h2 class="section-title">ターゲット顧客像の明確化</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">効果的なマーケティング戦略のためには、誰に届けたいのか、顧客像を具体的に描くことが重要です。AIを活用して、南国プリンの魅力を最も感じるであろう顧客ペルソナを作成してみましょう。</p>
+                <div class="gemini-feature-card" style="background-color: #FCE7F3; border-left-color: #DB2777;"> <h4 class="text-lg font-semibold text-[#073B4C] mb-2">✨ AIが描く！南国プリンの顧客ペルソナ</h4>
+                    <p class="text-sm text-gray-700 mb-3">ブランドや理想の顧客像を表すキーワードを入力して、具体的な顧客ペルソナのアイデアを得ましょう。</p>
+                    <textarea id="personaKeywordsInput" class="gemini-textarea" placeholder="例：宮崎好き、手土産、自分へのご褒美、懐かしい味、高品質スイーツ">宮崎出身または宮崎にゆかりのある人、30代女性、こだわりのある食を求める、ギフトを探している、レトロ可愛いものが好き</textarea>
+                    <button id="generatePersonaButton" class="gemini-button mb-3 w-full">顧客ペルソナを✨作成する</button>
+                    <div id="personaLoadingSpinner" class="loader"></div>
+                    <div id="personaContainer" class="mt-3 space-y-4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competitor-insights" class="mb-12">
+            <h2 class="section-title">競合から学ぶ：市場ベストプラクティス</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">プリン・スイーツEC市場の競合他社は、独自の強みを活かした戦略を展開しています。南国プリン様が参考にすべきポイントを見てみましょう。</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="action-card p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2 flex items-center"><span class="unicode-icon">🏆</span>明確なUSPとブランド訴求</h3>
+                        <p class="text-sm">マーロウ様の「ビーカープリン」や神戸フランツ様の「魔法の壷プリン」のように、記憶に残る独自性と一貫したブランドメッセージが重要です。</p>
+                    </div>
+                    <div class="action-card p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2 flex items-center"><span class="unicode-icon">🌟</span>顧客レビューの積極活用</h3>
+                        <p class="text-sm">マーロウ様のように、顧客の声を可視化することで信頼性を高め、購買を促進します。社会的証明は非常に強力です。</p>
+                    </div>
+                    <div class="action-card p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2 flex items-center"><span class="unicode-icon">🎁</span>ギフト市場への注力</h3>
+                        <p class="text-sm">多くの競合が魅力的なパッケージ、多様なギフトセット、贈答シーンを意識したマーケティングを展開しています。</p>
+                    </div>
+                </div>
+                 <p class="mt-6 text-center text-sm text-gray-600">南国プリン様も「宮崎ストーリー」と「レトロな幸せ」という素晴らしいテーマを、BASEストア上でより具体的に表現し、これらのベストプラクティスを取り入れることが推奨されます。</p>
+                
+                <div class="gemini-feature-card mt-6">
+                    <h4 class="text-lg font-semibold text-[#073B4C] mb-2">✨ AIが提案！南国プリン向けギフトセットアイデア</h4>
+                    <p class="text-sm text-gray-700 mb-3">南国プリンの商品と宮崎の魅力を組み合わせた、新しいギフトセットのアイデアをAIが提案します。</p>
+                    <button id="generateGiftSetIdeasButton" class="gemini-button mb-3">ギフトセットアイデアを✨生成する</button>
+                    <div id="giftSetIdeaLoadingSpinner" class="loader"></div>
+                    <div id="giftSetIdeasContainer" class="mt-3 space-y-3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="priority-actions" class="mb-12">
+            <h2 class="section-title">最優先アクション：売上向上への即効策</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">分析に基づき、BASEストアの売上向上に直結する最優先アクションは以下の通りです。これらは短期的に大きな効果が期待できます。</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-md border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <h3 class="text-lg font-semibold text-[#073B4C] mb-1 flex items-center"><span class="unicode-icon">🎨</span>1. BASEストアでのブランド体験強化</h3>
+                        <p class="text-sm text-gray-700">公式サイトのブランドストーリー（宮崎、フラミンゴ、素材等）をBASEストアのデザイン、商品ページ、Aboutページに反映。</p>
+                        <div class="gemini-feature-card mt-4" style="background-color: #FEFBF0; border-left-color: #FF6B6B;"> <h4 class="text-md font-semibold text-[#073B4C] mb-2">✨ AIが紡ぐ「About Us」ページ紹介文案</h4>
+                            <p class="text-xs text-gray-700 mb-2">ブランドの魅力を伝えるキーワードを入力し、AIに「About Us」ページの紹介文案を作成してもらいましょう。</p>
+                            <textarea id="aboutUsKeywordsInput" class="gemini-textarea" placeholder="例：宮崎の太陽、手作りの温もり、地元産牛乳、レトロな幸せ、フラミンゴ">宮崎の太陽、手作りの温もり、地元産牛乳、レトロな幸せ、フラミンゴのモチーフ、懐かしい思い出</textarea>
+                            <button id="generateAboutUsButton" class="gemini-button mb-2 w-full text-sm">「About Us」紹介文を✨作成</button>
+                            <div id="aboutUsLoadingSpinner" class="loader"></div>
+                            <div id="aboutUsContainer" class="mt-2 text-sm p-3 bg-white rounded border border-gray-200"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-md border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <h3 class="text-lg font-semibold text-[#073B4C] mb-1 flex items-center"><span class="unicode-icon">🗣️</span>2. 顧客レビューシステムの導入と活用</h3>
+                        <p class="text-sm text-gray-700">BASE「レビューApp」を導入し、顧客の声を可視化。信頼性と社会的証明を高める。</p>
+                    </div>
+                    <div class="p-4 rounded-md border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <h3 class="text-lg font-semibold text-[#073B4C] mb-1 flex items-center"><span class="unicode-icon">💰</span>3. BASE提供アプリを活用した販促強化</h3>
+                        <p class="text-sm text-gray-700">「クーポンApp」「セールApp」「Blog App」等を活用し、限定オファーや情報発信を強化。</p>
+                    </div>
+                     <div class="p-4 rounded-md border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <h3 class="text-lg font-semibold text-[#073B4C] mb-1 flex items-center"><span class="unicode-icon">📸</span>4. 商品ページの魅力最大化</h3>
+                        <p class="text-sm text-gray-700">プロ品質の写真（シズル感）、詳細な商品説明（ストーリー、原材料、アレルギー情報）、明確なCTAを整備。</p>
+                        <div class="gemini-feature-card mt-4" style="background-color: #E6FFFA; border-left-color: #06D6A0;">
+                            <h4 class="text-md font-semibold text-[#073B4C] mb-2">✨ AIが商品説明文を魅力的にリライト！</h4>
+                            <p class="text-xs text-gray-700 mb-2">既存の商品説明文を入力すると、AIが南国プリンの魅力を引き出す表現に書き換えます。</p>
+                            <textarea id="productDescriptionInput" class="gemini-textarea" placeholder="例：宮崎県産の牛乳を使った濃厚なプリンです。"></textarea>
+                            <button id="rewriteDescriptionButton" class="gemini-button mb-2 w-full text-sm">商品説明文を✨リライト</button>
+                            <div id="descriptionRewriteLoadingSpinner" class="loader"></div>
+                            <div id="rewrittenDescriptionContainer" class="mt-2 text-sm p-3 bg-white rounded border border-gray-200"></div>
+                        </div>
+                    </div>
+                     <div class="p-4 rounded-md border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <h3 class="text-lg font-semibold text-[#073B4C] mb-1 flex items-center"><span class="unicode-icon">📈</span>5. BASE向けSEO対策の実施</h3>
+                        <p class="text-sm text-gray-700">「SEO設定App」を活用し、商品名、商品説明等に適切なキーワードを盛り込み、検索流入増を目指す。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="app-utilization" class="mb-12">
+            <h2 class="section-title">BASEアプリ活用戦略：成長エンジンの最大化</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">BASEプラットフォームが提供する多様なAppは、ECサイトの機能拡張と売上向上に不可欠です。現状では活用が限定的と見られるため、積極的な導入と運用が求められます。</p>
+                <div class="chart-container mx-auto h-[350px] md:h-[420px]">
+                    <canvas id="appUtilizationChart"></canvas>
+                </div>
+                <p class="mt-6 text-center text-sm text-gray-600">特に「レビューApp」「クーポンApp」「Blog App」「SEO設定App」は、顧客エンゲージメント、販促、集客力の向上に大きく貢献します。</p>
+                <div class="gemini-feature-card mt-6" style="background-color: #F0F9FF; border-left-color: #118AB2;">
+                    <h4 class="text-lg font-semibold text-[#073B4C] mb-2">✨ AIが提案！BASEアプリ具体的な活用アイデア</h4>
+                    <p class="text-sm text-gray-700 mb-3">活用したいBASEアプリを選択すると、南国プリンならではの具体的な活用アイデアをAIが提案します。</p>
+                    <select id="baseAppSelect" class="gemini-select mb-2">
+                        <option value="レビューApp">レビューApp</option>
+                        <option value="クーポンApp">クーポンApp</option>
+                        <option value="Blog App">Blog App</option>
+                        <option value="セールApp">セールApp</option>
+                        <option value="送料詳細設定App">送料詳細設定App</option>
+                        <option value="SEO設定App">SEO設定App</option>
+                    </select>
+                    <button id="generateBaseAppIdeaButton" class="gemini-button mb-3 w-full">選択したアプリの活用アイデアを✨生成</button>
+                    <div id="baseAppIdeaLoadingSpinner" class="loader"></div>
+                    <div id="baseAppIdeasContainer" class="mt-3 space-y-3">
+                    </div>
+                </div>
+                <div class="gemini-feature-card mt-6" style="background-color: #FFF0F5; border-left-color: #FF69B4;"> <h4 class="text-lg font-semibold text-[#073B4C] mb-2">✨ AIが提案！季節のプロモーションアイデア</h4>
+                    <p class="text-sm text-gray-700 mb-3">季節やイベントを選択すると、南国プリンにぴったりのプロモーションアイデアをAIが提案します。</p>
+                    <select id="seasonEventSelect" class="gemini-select mb-2">
+                        <option value="春">春</option>
+                        <option value="夏">夏</option>
+                        <option value="秋">秋</option>
+                        <option value="冬">冬</option>
+                        <option value="母の日">母の日</option>
+                        <option value="父の日">父の日</option>
+                        <option value="クリスマス">クリスマス</option>
+                        <option value="バレンタインデー">バレンタインデー</option>
+                        <option value="ホワイトデー">ホワイトデー</option>
+                    </select>
+                    <button id="generatePromotionIdeaButton" class="gemini-button mb-3 w-full">プロモーションアイデアを✨生成</button>
+                    <div id="promotionIdeaLoadingSpinner" class="loader"></div>
+                    <div id="promotionIdeasContainer" class="mt-3 space-y-3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="mb-12">
+            <h2 class="section-title">ロードマップ：短期集中改善による成果創出</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">今後1～3ヶ月で集中的に取り組むべき施策とその期待インパクトを可視化します。迅速な実行が売上改善の鍵となります。</p>
+                <div class="chart-container mx-auto h-[400px] md:h-[500px]">
+                    <canvas id="shortTermRoadmapChart"></canvas>
+                </div>
+                <p class="mt-6 text-center text-sm text-gray-600">「レビューApp導入」と「トップ商品のページ改善」は特にインパクトが大きく、早期に着手すべきです。「送料規定の明確化」もカート放棄率低減に直結します。</p>
+            </div>
+        </section>
+
+        <section id="expected-outcomes" class="mb-12">
+            <h2 class="section-title">期待される成果：データに基づく成長予測</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-6 text-center">本レポートで提案された戦略を実行することで、南国プリン様のBASEストアは顕著な成長を遂げる可能性があります。以下は、これらの施策が成功した場合の期待される成果（イメージ）です。</p>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="p-6 bg-green-50 rounded-lg shadow">
+                        <div class="kpi-value text-[#06D6A0]">15-25%</div>
+                        <div class="kpi-label">コンバージョン率向上</div>
+                    </div>
+                    <div class="p-6 bg-yellow-50 rounded-lg shadow">
+                        <div class="kpi-value text-[#FFD166]">10-20%</div>
+                        <div class="kpi-label">平均注文額(AOV)増加</div>
+                    </div>
+                    <div class="p-6 bg-blue-50 rounded-lg shadow">
+                        <div class="kpi-value text-[#118AB2]">大幅UP</div>
+                        <div class="kpi-label">顧客満足度・信頼性</div>
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-sm text-gray-600">これらはあくまで目標値であり、継続的な努力と改善によって達成が見込まれます。データに基づいたPDCAサイクルを回すことが重要です。</p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-10">
+            <h2 class="section-title">結論：BASEストアの可能性を最大限に</h2>
+            <div class="card max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-green-50">
+                <p class="text-xl leading-relaxed mb-6">南国プリン様は、独自のブランド力と高品質な商品を背景に、BASEストアにおいても大きな成長ポテンシャルを秘めています。本インフォグラフィックで示された課題を克服し、提案された戦略を実行することで、ブランド体験の一貫性を確保し、顧客信頼を高め、BASEプラットフォームの機能を最大限に活用することが可能です。</p>
+                <p class="text-lg font-semibold text-[#073B4C]">今こそ、データに基づいた戦略的アプローチで、BASEストアの売上を飛躍的に向上させる時です。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-6 bg-[#073B4C] text-white text-sm">
+        <p>&copy; 2025 南国プリン BASEストア戦略インフォグラフィック</p>
+        <p>このインフォグラフィックは「南国プリンBASEストア分析と改善提案」レポートに基づいて作成されました。</p>
+    </footer>
+
+    <script>
+        const CHART_COLORS = {
+            red: '#FF6B6B', // Coral Red
+            yellow: '#FFD166', // Sunny Yellow
+            green: '#06D6A0', // Mint Green
+            blue: '#118AB2', // Cerulean Blue
+            darkBlue: '#073B4C' // Dark Slate Blue
+        };
+
+        function wrapLabels(label, maxWidth = 16) {
+            if (typeof label !== 'string') return label;
+            const words = label.split(''); // Split by character for Japanese
+            let lines = [];
+            let currentLine = '';
+            for (const char of words) {
+                if (currentLine.length + char.length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += char;
+            }
+            lines.push(currentLine);
+            return lines.filter(line => line.length > 0);
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(''); // Join without space for Japanese wrapped labels
+            }
+            return label;
+        };
+
+        // Customer Experience Chart (Donut)
+        const cxCtx = document.getElementById('customerExperienceChart')?.getContext('2d');
+        if (cxCtx) {
+            new Chart(cxCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['レビューによる信頼性', 'ブランドストーリー共感度', '情報透明性(送料等)', '商品情報の魅力度', 'デザイン・操作性'],
+                    datasets: [{
+                        label: '顧客体験評価 (現状)',
+                        data: [20, 30, 40, 50, 60], // Hypothetical scores (out of 100)
+                        backgroundColor: [
+                            CHART_COLORS.red,    // Reviews - Needs most improvement
+                            CHART_COLORS.yellow, // Brand Story - Needs improvement
+                            CHART_COLORS.red,    // Info Transparency - Needs improvement
+                            CHART_COLORS.yellow, // Product Info Appeal - Okay
+                            CHART_COLORS.green   // Design/Usability - Better
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 10 }}},
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
+
+        // App Utilization Chart (Bar)
+        const appCtx = document.getElementById('appUtilizationChart')?.getContext('2d');
+        if (appCtx) {
+            new Chart(appCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabels('レビューApp'), wrapLabels('クーポンApp'), wrapLabels('Blog App'), wrapLabels('SEO設定App'), wrapLabels('送料詳細設定App')],
+                    datasets: [
+                        {
+                            label: '現在の活用度 (推定)',
+                            data: [10, 20, 5, 15, 25], // Lower values for current
+                            backgroundColor: CHART_COLORS.yellow + 'BF', // BF for alpha
+                            borderColor: CHART_COLORS.yellow,
+                            borderWidth: 1
+                        },
+                        {
+                            label: '期待されるポテンシャルインパクト',
+                            data: [90, 80, 70, 85, 75], // Higher values for potential
+                            backgroundColor: CHART_COLORS.green + 'BF',
+                            borderColor: CHART_COLORS.green,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { stepSize: 20, font: {size: 10}} },
+                        x: { ticks: { font: {size: 10} } }
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 10 }}},
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        // Short-Term Roadmap Chart (Horizontal Bar)
+        const roadmapCtx = document.getElementById('shortTermRoadmapChart')?.getContext('2d');
+        if (roadmapCtx) {
+            new Chart(roadmapCtx, {
+                type: 'bar', // Horizontal bar is achieved via indexAxis: 'y'
+                data: {
+                    labels: [
+                        wrapLabels('レビューApp導入・運用開始'), 
+                        wrapLabels('トップ3商品ページ改善'), 
+                        wrapLabels('送料規定の明確化'), 
+                        wrapLabels('BASE SEO設定App基本設定'),
+                        wrapLabels('ブランドストーリーのAboutページ掲載')
+                    ],
+                    datasets: [{
+                        label: '期待インパクト (高→低)',
+                        data: [95, 90, 80, 75, 70], // Higher is better impact
+                        backgroundColor: [
+                            CHART_COLORS.green,
+                            CHART_COLORS.blue,
+                            CHART_COLORS.green,
+                            CHART_COLORS.yellow,
+                            CHART_COLORS.blue
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // This makes it a horizontal bar chart
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { beginAtZero: true, max: 100, ticks: { stepSize: 20, font: {size: 10} } },
+                        y: { ticks: { font: {size: 10}, autoSkip: false } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        // --- Gemini API Functions ---
+        async function callGeminiAPI(prompt, loadingSpinner, container) {
+            container.innerHTML = '';
+            if(loadingSpinner) loadingSpinner.style.display = 'block';
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+                const result = await response.json();
+                if(loadingSpinner) loadingSpinner.style.display = 'none';
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    return result.candidates[0].content.parts[0].text;
+                } else {
+                    throw new Error("APIから有効なレスポンスがありませんでした。");
+                }
+            } catch (error) {
+                if(loadingSpinner) loadingSpinner.style.display = 'none';
+                container.innerHTML = `<p class="text-red-500">エラーが発生しました: ${error.message}. 開発者コンソールで詳細を確認してください。</p>`;
+                console.error("Gemini API Error:", error);
+                return null;
+            }
+        }
+
+        // 1. Gift Set Idea Generator
+        const generateGiftSetIdeasButton = document.getElementById('generateGiftSetIdeasButton');
+        const giftSetIdeasContainer = document.getElementById('giftSetIdeasContainer');
+        const giftSetIdeaLoadingSpinner = document.getElementById('giftSetIdeaLoadingSpinner');
+
+        if (generateGiftSetIdeasButton) {
+            generateGiftSetIdeasButton.addEventListener('click', async () => {
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のマーケティング担当です。南国プリンの既存商品（プレーン、マンゴー、抹茶、塩キャラメルなど）と宮崎の特産品（日向夏、きんかん、完熟マンゴーなど）を組み合わせた、魅力的なギフトセットのアイデアを3つ提案してください。各アイデアには、セット名、セット内容（プリンの種類と個数、その他組み合わせる商品）、ターゲット顧客（例：お中元、お歳暮、誕生日、手土産など）、そして簡単なアピールポイント（50字程度）を含めてください。出力形式は以下の形式で、各アイデアを---で区切ってください。\n\nセット名: [セット名]\nセット内容: [内容]\nターゲット顧客: [ターゲット層]\nアピールポイント: [ポイント]\n\n---\n\nセット名: ...`;
+                
+                const text = await callGeminiAPI(prompt, giftSetIdeaLoadingSpinner, giftSetIdeasContainer);
+                if (text) {
+                    const ideas = text.split('---').map(idea => idea.trim()).filter(idea => idea.length > 0);
+                    if (ideas.length === 0 && text.length > 0) { 
+                        ideas.push(text);
+                    }
+
+                    ideas.forEach(ideaText => {
+                        const ideaCard = document.createElement('div');
+                        ideaCard.className = 'p-4 border border-yellow-300 rounded-md mb-3 bg-yellow-50 shadow';
+                        
+                        const lines = ideaText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+                        let currentIdea = {};
+                        lines.forEach(line => {
+                            if (line.startsWith("セット名:")) currentIdea.name = line.replace("セット名:", "").trim();
+                            else if (line.startsWith("セット内容:")) currentIdea.content = line.replace("セット内容:", "").trim();
+                            else if (line.startsWith("ターゲット顧客:")) currentIdea.target = line.replace("ターゲット顧客:", "").trim();
+                            else if (line.startsWith("アピールポイント:")) currentIdea.appeal = line.replace("アピールポイント:", "").trim();
+                        });
+
+                        if (currentIdea.name) {
+                            const h5 = document.createElement('h5');
+                            h5.className = 'font-semibold text-lg text-[#B45309] mb-1'; 
+                            h5.textContent = currentIdea.name;
+                            ideaCard.appendChild(h5);
+                        }
+                        if (currentIdea.content) {
+                            const pContent = document.createElement('p');
+                            pContent.className = 'text-sm text-gray-700 mb-1';
+                            pContent.innerHTML = `<strong>セット内容:</strong> ${currentIdea.content}`;
+                            ideaCard.appendChild(pContent);
+                        }
+                        if (currentIdea.target) {
+                            const pTarget = document.createElement('p');
+                            pTarget.className = 'text-sm text-gray-700 mb-1';
+                            pTarget.innerHTML = `<strong>ターゲット顧客:</strong> ${currentIdea.target}`;
+                            ideaCard.appendChild(pTarget);
+                        }
+                        if (currentIdea.appeal) {
+                            const pAppeal = document.createElement('p');
+                            pAppeal.className = 'text-sm text-gray-600';
+                            pAppeal.innerHTML = `<strong>アピールポイント:</strong> ${currentIdea.appeal}`;
+                            ideaCard.appendChild(pAppeal);
+                        }
+                         if (!currentIdea.name && ideaText.length > 0) { 
+                            const pFallback = document.createElement('p');
+                            pFallback.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                            pFallback.textContent = ideaText;
+                            ideaCard.appendChild(pFallback);
+                        }
+                        if (ideaCard.hasChildNodes()) {
+                           giftSetIdeasContainer.appendChild(ideaCard);
+                        }
+                    });
+                     if (giftSetIdeasContainer.children.length === 0 && text.length > 0 && !giftSetIdeasContainer.textContent.includes("エラーが発生しました")) {
+                        const pRaw = document.createElement('p');
+                        pRaw.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                        pRaw.textContent = "AIからの提案:\n" + text;
+                        giftSetIdeasContainer.appendChild(pRaw);
+                    } else if (giftSetIdeasContainer.children.length === 0 && !giftSetIdeasContainer.textContent.includes("エラーが発生しました")) {
+                         giftSetIdeasContainer.innerHTML = '<p class="text-gray-600">ギフトセットアイデアの解析中に問題が発生しました。AIからの応答形式が予期したものと異なる可能性があります。</p>';
+                    }
+                }
+            });
+        }
+
+        // 2. Product Description Rewriter
+        const rewriteDescriptionButton = document.getElementById('rewriteDescriptionButton');
+        const productDescriptionInput = document.getElementById('productDescriptionInput');
+        const rewrittenDescriptionContainer = document.getElementById('rewrittenDescriptionContainer');
+        const descriptionRewriteLoadingSpinner = document.getElementById('descriptionRewriteLoadingSpinner');
+
+        if (rewriteDescriptionButton) {
+            rewriteDescriptionButton.addEventListener('click', async () => {
+                const originalDescription = productDescriptionInput.value.trim();
+                if (!originalDescription) {
+                    rewrittenDescriptionContainer.innerHTML = '<p class="text-red-500">リライトする商品説明文を入力してください。</p>';
+                    return;
+                }
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のコピーライターです。以下の商品説明文を、より魅力的で、南国プリンのブランドイメージ（宮崎の素材、手作り感、レトロな幸せ）を反映し、顧客の購買意欲を高めるような文章にリライトしてください。元の情報の主要なポイントは維持しつつ、表現を豊かにしてください。リライト後の文章は150字程度でお願いします。\n\n元の説明文:\n「${originalDescription}」\n\nリライト後の説明文:`;
+                
+                const text = await callGeminiAPI(prompt, descriptionRewriteLoadingSpinner, rewrittenDescriptionContainer);
+                if (text) {
+                    const p = document.createElement('p');
+                    p.className = 'text-gray-700 whitespace-pre-line'; 
+                    p.textContent = text.replace("リライト後の説明文:", "").trim();
+                    rewrittenDescriptionContainer.appendChild(p);
+                }
+            });
+        }
+
+        // 3. BASE App Usage Idea Deep Dive
+        const generateBaseAppIdeaButton = document.getElementById('generateBaseAppIdeaButton');
+        const baseAppSelect = document.getElementById('baseAppSelect');
+        const baseAppIdeasContainer = document.getElementById('baseAppIdeasContainer');
+        const baseAppIdeaLoadingSpinner = document.getElementById('baseAppIdeaLoadingSpinner');
+
+        if (generateBaseAppIdeaButton) {
+            generateBaseAppIdeaButton.addEventListener('click', async () => {
+                const selectedApp = baseAppSelect.value;
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のECコンサルタントです。南国プリンがBASEの「${selectedApp}」を最大限に活用し、売上向上や顧客エンゲージメント強化に繋げるための具体的なアイデアを2つ提案してください。各アイデアは、どのような目的で、どのように実施するのかを80字程度で説明してください。南国プリンのブランド（宮崎、手作り、レトロ）や商品特性を考慮したユニークな提案を期待します。出力形式は箇条書きで、各アイデアの前に「活用アイデア：」と付けてください。`;
+
+                const text = await callGeminiAPI(prompt, baseAppIdeaLoadingSpinner, baseAppIdeasContainer);
+                if (text) {
+                    const ideas = text.split('\n').map(s => s.trim()).filter(s => s.length > 0 && s.startsWith("活用アイデア："));
+                     if (ideas.length > 0) {
+                        const ul = document.createElement('ul');
+                        ul.className = 'list-none space-y-3';
+                        ideas.forEach(ideaText => {
+                            const li = document.createElement('li');
+                            li.className = 'p-3 border border-blue-200 rounded-md bg-blue-50 shadow-sm';
+                            
+                            const title = document.createElement('h5');
+                            title.className = 'font-semibold text-md text-blue-700 mb-1';
+                            title.textContent = ideaText.substring(0, ideaText.indexOf("：") + 1); 
+                            
+                            const description = document.createElement('p');
+                            description.className = 'text-sm text-gray-700';
+                            description.textContent = ideaText.substring(ideaText.indexOf("：") + 1).trim();
+                            
+                            li.appendChild(title);
+                            li.appendChild(description);
+                            ul.appendChild(li);
+                        });
+                        baseAppIdeasContainer.appendChild(ul);
+                    } else {
+                        const p = document.createElement('p');
+                        p.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                        p.textContent = text; 
+                        baseAppIdeasContainer.appendChild(p);
+                         if (baseAppIdeasContainer.children.length === 0) {
+                            baseAppIdeasContainer.innerHTML = '<p class="text-gray-600">活用アイデアの解析中に問題が発生しました。</p>';
+                        }
+                    }
+                }
+            });
+        }
+
+        // 4. "About Us" Content Enhancer
+        const generateAboutUsButton = document.getElementById('generateAboutUsButton');
+        const aboutUsKeywordsInput = document.getElementById('aboutUsKeywordsInput');
+        const aboutUsContainer = document.getElementById('aboutUsContainer');
+        const aboutUsLoadingSpinner = document.getElementById('aboutUsLoadingSpinner');
+
+        if (generateAboutUsButton) {
+            generateAboutUsButton.addEventListener('click', async () => {
+                const keywords = aboutUsKeywordsInput.value.trim();
+                if (!keywords) {
+                    aboutUsContainer.innerHTML = '<p class="text-red-500">ブランドのキーワードを入力してください。</p>';
+                    return;
+                }
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のストーリーテラーです。以下のキーワードを使って、BASEストアの「About Us」ページに掲載する魅力的なブランド紹介文を1つ作成してください。文章は200字から250字程度で、お客様が共感し、ブランドに親しみを感じるような温かいトーンでお願いします。\n\nキーワード:\n${keywords}\n\n生成された紹介文:`;
+                
+                const text = await callGeminiAPI(prompt, aboutUsLoadingSpinner, aboutUsContainer);
+                if (text) {
+                    const p = document.createElement('p');
+                    p.className = 'text-gray-700 whitespace-pre-line';
+                    p.textContent = text.replace("生成された紹介文:", "").trim();
+                    aboutUsContainer.appendChild(p);
+                }
+            });
+        }
+
+        // 5. Product FAQ Generator
+        const generateFaqButton = document.getElementById('generateFaqButton');
+        const productNameForFaqInput = document.getElementById('productNameForFaq');
+        const faqContainer = document.getElementById('faqContainer');
+        const faqLoadingSpinner = document.getElementById('faqLoadingSpinner');
+
+        if (generateFaqButton) {
+            generateFaqButton.addEventListener('click', async () => {
+                const productName = productNameForFaqInput.value.trim();
+                if (!productName) {
+                    faqContainer.innerHTML = '<p class="text-red-500">商品名を入力してください。</p>';
+                    return;
+                }
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のカスタマーサポート担当です。お客様からよく寄せられる質問を想定し、「${productName}」に関するFAQを3つ作成してください。各FAQは質問(Q.)と回答(A.)のペアで、回答は簡潔かつ分かりやすくお願いします。プリンの一般的な質問（例：賞味期限、保存方法、アレルギー情報など）を含めてください。\n\n出力形式:\nQ. [質問1]\nA. [回答1]\n\nQ. [質問2]\nA. [回答2]\n\nQ. [質問3]\nA. [回答3]`;
+
+                const text = await callGeminiAPI(prompt, faqLoadingSpinner, faqContainer);
+                if (text) {
+                    const faqs = text.split('\n\n').map(faqPair => faqPair.trim()).filter(faqPair => faqPair.length > 0);
+                    if (faqs.length > 0) {
+                        faqs.forEach(faqPairText => {
+                            const faqCard = document.createElement('div');
+                            faqCard.className = 'p-3 border border-green-200 rounded-md bg-green-50 shadow-sm';
+                            const lines = faqPairText.split('\n').map(line => line.trim());
+                            if (lines[0] && lines[0].startsWith("Q.")) {
+                                const q = document.createElement('p');
+                                q.className = 'font-semibold text-sm text-green-700';
+                                q.textContent = lines[0];
+                                faqCard.appendChild(q);
+                            }
+                            if (lines[1] && lines[1].startsWith("A.")) {
+                                const a = document.createElement('p');
+                                a.className = 'text-sm text-gray-700 ml-2';
+                                a.textContent = lines[1];
+                                faqCard.appendChild(a);
+                            }
+                            if (faqCard.hasChildNodes()){
+                                faqContainer.appendChild(faqCard);
+                            }
+                        });
+                    } else if (text.length > 0) { 
+                        const pRaw = document.createElement('p');
+                        pRaw.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                        pRaw.textContent = "AIからのFAQ提案:\n" + text;
+                        faqContainer.appendChild(pRaw);
+                    }
+                     if (faqContainer.children.length === 0 && !faqContainer.textContent.includes("エラーが発生しました")) {
+                        faqContainer.innerHTML = '<p class="text-gray-600">FAQの解析中に問題が発生しました。</p>';
+                    }
+                }
+            });
+        }
+
+        // 6. Seasonal Promotion Idea Generator (NEW)
+        const generatePromotionIdeaButton = document.getElementById('generatePromotionIdeaButton');
+        const seasonEventSelect = document.getElementById('seasonEventSelect');
+        const promotionIdeasContainer = document.getElementById('promotionIdeasContainer');
+        const promotionIdeaLoadingSpinner = document.getElementById('promotionIdeaLoadingSpinner');
+
+        if (generatePromotionIdeaButton) {
+            generatePromotionIdeaButton.addEventListener('click', async () => {
+                const selectedSeasonEvent = seasonEventSelect.value;
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のクリエイティブマーケターです。「${selectedSeasonEvent}」に合わせた、南国プリンのBASEストア向けのプロモーションアイデアを2つ提案してください。各アイデアには、キャンペーン名（短くキャッチーなもの）、概要・テーマ（50字程度）、特別オファー案（例：限定フレーバー、割引、セット商品）、推奨チャネル（例：Instagram、BASE Blog App、メールマガジン）を含めてください。既存商品はプレーン、マンゴー、抹茶、塩キャラメルなどがあります。宮崎の素材やブランドイメージ（レトロ、手作り、幸せ）を活かした提案をお願いします。\n\n出力形式 (各アイデアを---で区切る):\nキャンペーン名: [名称]\n概要・テーマ: [説明]\n特別オファー案: [オファー]\n推奨チャネル: [チャネル]\n\n---\nキャンペーン名: ...`;
+                
+                const text = await callGeminiAPI(prompt, promotionIdeaLoadingSpinner, promotionIdeasContainer);
+                if (text) {
+                    const ideas = text.split('---').map(idea => idea.trim()).filter(idea => idea.length > 0);
+                     if (ideas.length === 0 && text.length > 0) { ideas.push(text); }
+
+                    ideas.forEach(ideaText => {
+                        const ideaCard = document.createElement('div');
+                        ideaCard.className = 'p-4 border border-pink-300 rounded-md mb-3 bg-pink-50 shadow';
+                        const lines = ideaText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+                        let currentIdea = {};
+                        lines.forEach(line => {
+                            if (line.startsWith("キャンペーン名:")) currentIdea.name = line.replace("キャンペーン名:", "").trim();
+                            else if (line.startsWith("概要・テーマ:")) currentIdea.theme = line.replace("概要・テーマ:", "").trim();
+                            else if (line.startsWith("特別オファー案:")) currentIdea.offer = line.replace("特別オファー案:", "").trim();
+                            else if (line.startsWith("推奨チャネル:")) currentIdea.channel = line.replace("推奨チャネル:", "").trim();
+                        });
+
+                        if (currentIdea.name) {
+                            const h5 = document.createElement('h5');
+                            h5.className = 'font-semibold text-lg text-pink-700 mb-1';
+                            h5.textContent = currentIdea.name;
+                            ideaCard.appendChild(h5);
+                        }
+                        if (currentIdea.theme) {
+                            const pTheme = document.createElement('p');
+                            pTheme.className = 'text-sm text-gray-700 mb-1';
+                            pTheme.innerHTML = `<strong>テーマ:</strong> ${currentIdea.theme}`;
+                            ideaCard.appendChild(pTheme);
+                        }
+                        if (currentIdea.offer) {
+                            const pOffer = document.createElement('p');
+                            pOffer.className = 'text-sm text-gray-700 mb-1';
+                            pOffer.innerHTML = `<strong>オファー案:</strong> ${currentIdea.offer}`;
+                            ideaCard.appendChild(pOffer);
+                        }
+                        if (currentIdea.channel) {
+                            const pChannel = document.createElement('p');
+                            pChannel.className = 'text-sm text-gray-600';
+                            pChannel.innerHTML = `<strong>推奨チャネル:</strong> ${currentIdea.channel}`;
+                            ideaCard.appendChild(pChannel);
+                        }
+                        if (!currentIdea.name && ideaText.length > 0) {
+                            const pFallback = document.createElement('p');
+                            pFallback.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                            pFallback.textContent = ideaText;
+                            ideaCard.appendChild(pFallback);
+                        }
+                        if (ideaCard.hasChildNodes()) {
+                           promotionIdeasContainer.appendChild(ideaCard);
+                        }
+                    });
+                    if (promotionIdeasContainer.children.length === 0 && text.length > 0 && !promotionIdeasContainer.textContent.includes("エラーが発生しました")) {
+                        const pRaw = document.createElement('p');
+                        pRaw.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                        pRaw.textContent = "AIからの提案:\n" + text;
+                        promotionIdeasContainer.appendChild(pRaw);
+                    } else if (promotionIdeasContainer.children.length === 0 && !promotionIdeasContainer.textContent.includes("エラーが発生しました")) {
+                         promotionIdeasContainer.innerHTML = '<p class="text-gray-600">プロモーションアイデアの解析中に問題が発生しました。</p>';
+                    }
+                }
+            });
+        }
+
+        // 7. Target Customer Persona Generator (NEW)
+        const generatePersonaButton = document.getElementById('generatePersonaButton');
+        const personaKeywordsInput = document.getElementById('personaKeywordsInput');
+        const personaContainer = document.getElementById('personaContainer');
+        const personaLoadingSpinner = document.getElementById('personaLoadingSpinner');
+
+        if (generatePersonaButton) {
+            generatePersonaButton.addEventListener('click', async () => {
+                const keywords = personaKeywordsInput.value.trim();
+                if (!keywords) {
+                    personaContainer.innerHTML = '<p class="text-red-500">ペルソナ作成のためのキーワードを入力してください。</p>';
+                    return;
+                }
+                const prompt = `あなたは「南国プリン」（宮崎のプリン専門店）のマーケティングリサーチャーです。以下のキーワードを基に、南国プリンの典型的な顧客ペルソナを2名作成してください。各ペルソナには、ペルソナ名（例：「宮崎愛あふれるOL 花子さん」）、年齢層、特徴・ライフスタイル（簡潔に）、プリンへの期待（例：特別な日のご褒美、安心できるおやつ）、購入動機（例：自分用、ギフト用）を含めてください。南国プリンのブランドイメージ（宮崎、手作り、レトロ、高品質）を考慮してください。\n\nキーワード:\n${keywords}\n\n出力形式 (各ペルソナを---で区切る):\nペルソナ名: [名称]\n年齢層: [年齢]\n特徴・ライフスタイル: [説明]\nプリンへの期待: [期待]\n購入動機: [動機]\n\n---\nペルソナ名: ...`;
+                
+                const text = await callGeminiAPI(prompt, personaLoadingSpinner, personaContainer);
+                if (text) {
+                    const personas = text.split('---').map(p => p.trim()).filter(p => p.length > 0);
+                    if (personas.length === 0 && text.length > 0) { personas.push(text); }
+
+                    personas.forEach(personaText => {
+                        const personaCard = document.createElement('div');
+                        personaCard.className = 'p-4 border border-pink-300 rounded-md mb-3 bg-pink-50 shadow';
+                        const lines = personaText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+                        let currentPersona = {};
+                        lines.forEach(line => {
+                            if (line.startsWith("ペルソナ名:")) currentPersona.name = line.replace("ペルソナ名:", "").trim();
+                            else if (line.startsWith("年齢層:")) currentPersona.age = line.replace("年齢層:", "").trim();
+                            else if (line.startsWith("特徴・ライフスタイル:")) currentPersona.lifestyle = line.replace("特徴・ライフスタイル:", "").trim();
+                            else if (line.startsWith("プリンへの期待:")) currentPersona.expectation = line.replace("プリンへの期待:", "").trim();
+                            else if (line.startsWith("購入動機:")) currentPersona.motivation = line.replace("購入動機:", "").trim();
+                        });
+
+                        if (currentPersona.name) {
+                            const h5 = document.createElement('h5');
+                            h5.className = 'font-semibold text-lg text-pink-700 mb-1';
+                            h5.textContent = currentPersona.name;
+                            personaCard.appendChild(h5);
+                        }
+                        if (currentPersona.age) {
+                            const pAge = document.createElement('p');
+                            pAge.className = 'text-sm text-gray-700 mb-1';
+                            pAge.innerHTML = `<strong>年齢層:</strong> ${currentPersona.age}`;
+                            personaCard.appendChild(pAge);
+                        }
+                        if (currentPersona.lifestyle) {
+                            const pLifestyle = document.createElement('p');
+                            pLifestyle.className = 'text-sm text-gray-700 mb-1';
+                            pLifestyle.innerHTML = `<strong>特徴・ライフスタイル:</strong> ${currentPersona.lifestyle}`;
+                            personaCard.appendChild(pLifestyle);
+                        }
+                        if (currentPersona.expectation) {
+                            const pExpectation = document.createElement('p');
+                            pExpectation.className = 'text-sm text-gray-700 mb-1';
+                            pExpectation.innerHTML = `<strong>プリンへの期待:</strong> ${currentPersona.expectation}`;
+                            personaCard.appendChild(pExpectation);
+                        }
+                        if (currentPersona.motivation) {
+                            const pMotivation = document.createElement('p');
+                            pMotivation.className = 'text-sm text-gray-600';
+                            pMotivation.innerHTML = `<strong>購入動機:</strong> ${currentPersona.motivation}`;
+                            personaCard.appendChild(pMotivation);
+                        }
+                        if (!currentPersona.name && personaText.length > 0) {
+                             const pFallback = document.createElement('p');
+                            pFallback.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                            pFallback.textContent = personaText;
+                            personaCard.appendChild(pFallback);
+                        }
+                         if (personaCard.hasChildNodes()) {
+                           personaContainer.appendChild(personaCard);
+                        }
+                    });
+                     if (personaContainer.children.length === 0 && text.length > 0 && !personaContainer.textContent.includes("エラーが発生しました")) {
+                        const pRaw = document.createElement('p');
+                        pRaw.className = 'text-sm text-gray-700 whitespace-pre-wrap';
+                        pRaw.textContent = "AIからの提案:\n" + text;
+                        personaContainer.appendChild(pRaw);
+                    } else if (personaContainer.children.length === 0 && !personaContainer.textContent.includes("エラーが発生しました")) {
+                         personaContainer.innerHTML = '<p class="text-gray-600">顧客ペルソナの解析中に問題が発生しました。</p>';
+                    }
+                }
+            });
+        }
+
+
+    </script>
+</body>
+</html>
